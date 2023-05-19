@@ -1,5 +1,4 @@
 import random
-import time
 from tkinter import *
 import os
 from pokemons import Pokemon
@@ -155,6 +154,7 @@ class Tela:
                 self.informacao_pokemon2_tela2.config(text=f"Wartortle, Tipo: Água\n")
 
             self.ambos()
+            self.ataque_inicial()
 
     def escolha_computador(self):
         if self.computador == "Venusaur":
@@ -173,20 +173,19 @@ class Tela:
 
         if self.computador == self.Charmeleon.nome:
             self.Charmeleon.vida -= self.dano()
-            time.sleep(2)
-            self.lb_situacao_usuario.config(text=f"Você foi atacado! {self.entrada_usuario.get()}, você tem {self.Charmeleon.vida} de vida")
+
+            self.lb_situacao_usuario.config(text=f"Você foi atacado! {self.entrada_usuario.get()}, o {self.Charmeleon.nome} tem {self.Charmeleon.vida} de vida")
             self.verifica_ganhador()
 
         elif self.computador == self.Venusaur.nome:
             self.Venusaur.vida -= self.dano()
-            time.sleep(2)
-            self.lb_situacao_usuario.config(text=f"Você foi atacado! {self.entrada_usuario.get()}, você tem {self.Venusaur.vida} de vida")
+
+            self.lb_situacao_usuario.config(text=f"Você foi atacado! {self.entrada_usuario.get()}, o {self.Venusaur.nome} tem {self.Venusaur.vida} de vida")
             self.verifica_ganhador()
 
         elif self.computador == self.Wartortle.nome:
             self.Wartortle.vida -= self.dano()
-            self.lb_situacao_usuario.config(text=f"Você foi atacado! {self.entrada_usuario.get()}, você tem {self.Wartortle.vida} de vida")
-            time.sleep(2)
+            self.lb_situacao_usuario.config(text=f"Você foi atacado! {self.entrada_usuario.get()}, o {self.Wartortle.nome} tem {self.Wartortle.vida} de vida")
             self.verifica_ganhador()
 
         else:
@@ -196,17 +195,17 @@ class Tela:
     def ataque_computador(self):
         if self.entrada_usuario.get() == self.Charmeleon.nome:
             self.Charmeleon.vida -= self.dano()
-            self.lb_situacao_comp.config(text=f"Fui atacado!  pelo {self.entrada_usuario.get()} eu tenho {self.Charmeleon.vida} de vida!")
+            self.lb_situacao_comp.config(text=f"Fui atacado!  pelo {self.entrada_usuario.get()} ele tem {self.Charmeleon.vida} de vida!")
             self.verifica_ganhador()
 
         elif self.entrada_usuario.get() == self.Venusaur.nome:
             self.Venusaur.vida -= self.dano()
-            self.lb_situacao_comp.config(text=f"Fui atacado!  pelo {self.entrada_usuario.get()} eu tenho {self.Venusaur.vida} de vida!")
+            self.lb_situacao_comp.config(text=f"Fui atacado!  pelo {self.entrada_usuario.get()} ele tem {self.Venusaur.vida} de vida!")
             self.verifica_ganhador()
 
         elif self.entrada_usuario.get() == self.Wartortle.nome:
             self.Wartortle.vida -= self.dano()
-            self.lb_situacao_comp.config(text=f" Fui atacado!  pelo {self.entrada_usuario.get()} eu tenho {self.Wartortle.vida} de vida!")
+            self.lb_situacao_comp.config(text=f" Fui atacado!  pelo {self.entrada_usuario.get()} ele tem {self.Wartortle.vida} de vida!")
             self.verifica_ganhador()
 
         else:
@@ -216,31 +215,31 @@ class Tela:
 
         if self.computador == self.Charmeleon.nome and self.entrada_usuario.get() == self.Wartortle.nome:
             self.Charmeleon.vida -= (self.dano()*2)
-            self.lb_situacao.config(text=f"O usuário {self.entrada_usuario.get()} atacou! {self.Charmeleon.nome} tenho {self.Charmeleon.vida} de vida! ")
+            self.lb_situacao_usuario.config(text=f"O usuário {self.entrada_usuario.get()} atacou! {self.Charmeleon.nome} tem {self.Charmeleon.vida} de vida! ")
             self.ataque_computador()
 
         elif self.computador == self.Charmeleon.nome and self.entrada_usuario.get() == self.Venusaur.nome:
             self.Venusaur.vida -= (self.dano()*2)
-            self.lb_situacao.config(text=f"O computador {self.computador} atacou! {self.entrada_usuario.get()} tem {self.Venusaur.vida} de vida! ")
+            self.lb_escolha_computador.config(text=f"Eu {self.computador} ataquei {self.entrada_usuario.get()}, eu tenho {self.Charmeleon.vida} de vida! ")
 
         elif self.computador == self.Venusaur.nome and self.entrada_usuario.get() == self.Wartortle.nome:
             self.Wartortle.vida -= (self.dano()*2)
 
-            self.lb_situacao.config(text=f"O computador {self.computador} atacou! {self.entrada_usuario.get()} tem {self.Wartortle.vida} de vida!")
+            self.lb_escolha_computador.config(text=f"Eu {self.computador} ataquei {self.entrada_usuario.get()}, eu tenho {self.Venusaur.vida} de vida!")
 
         elif self.entrada_usuario.get() == self.Charmeleon.nome and self.computador == self.Wartortle.nome:
             self.Charmeleon.vida -= (self.dano()*2)
 
-            self.lb_situacao.config(text=f"O computador {self.computador} atacou! {self.entrada_usuario.get()} tem {self.Charmeleon.vida} de vida! ")
+            self.lb_escolha_computador.config(text=f"Eu {self.computador} ataquei {self.entrada_usuario.get()} tem {self.Wartortle.vida} de vida! ")
 
         elif self.entrada_usuario.get() == self.Venusaur.nome and self.computador == self.Wartortle.nome:
             self.Wartortle.vida -= (self.dano()*2)
-            self.lb_situacao.config(text=f"O usuário {self.entrada_usuario.get()} atacou! {self.computador} tem {self.Wartortle.vida} de vida!")
+            self.lb_situacao_usuario.config(text=f"O usuário {self.entrada_usuario.get()} atacou! {self.computador} tem {self.Wartortle.vida} de vida!")
             self.ataque_computador()
 
         elif self.computador == self.Venusaur.nome and self.entrada_usuario.get() == self.Charmeleon.nome:
             self.Venusaur.vida -= (self.dano()*2)
-            self.lb_situacao.config(text=f"O usuário {self.entrada_usuario.get()} atacou! {self.computador} tem {self.Venusaur.vida} de vida!")
+            self.lb_situacao_usuario.config(text=f"O usuário {self.entrada_usuario.get()} atacou! {self.computador} tem {self.Venusaur.vida} de vida!")
             self.ataque_computador()
 
         else:
@@ -255,11 +254,11 @@ class Tela:
         escolha_dano = random.choice(self.dano_de_vida)
 
         if escolha_dano == 10:
-            print("O dano aplicado foi nivel fácil!!")
+            self.lb_situacao.config(text="O dano aplicado foi nivel fácil!!")
         elif escolha_dano == 20:
-            print("O dano aplicado foi nivel Moderado!!")
+            self.lb_situacao.config(text="O dano aplicado foi nivel Moderado!!")
         else:
-            print("O dano aplicado foi nivel critico!")
+            self.lb_situacao.config(text="O dano aplicado foi nivel critico!")
 
         return escolha_dano
 
@@ -324,6 +323,7 @@ class Tela:
                 self.ataque_usuario()
         else:
             self.ataque_inicial()
+
 
 
 Tela()
